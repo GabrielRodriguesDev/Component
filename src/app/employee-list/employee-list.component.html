@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row"> 
+<h1>Nossos empregados</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td colspan="3">
+                <button class="btn btn-primary" (click)="openNewModal()">Novo Empregado</button>
+            </td>
+        </tr>
+    <tr>
+        <th>Nome</th>
+        <th>Salário</th>
+        <th>Bônus</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employeeService.employees;let i=index;" [id]="'tr'+ i">
+        <td>{{employee.name}}</td>
+        <!--<td [ngClass]="{'salary-expensive': employee.salary > 1000, 'salary-cheap': employee.salary <= 1000}"> 
+        {{employee.salary}}</td> -->
+        <td salaryColor="{{employee.salary}}"="Testandoo uma variavel diferente" >{{employee.salary}}</td>
+        <td>{{employee.bonus}}</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</div>
+
+<employee-new-modal #newModal></employee-new-modal>
