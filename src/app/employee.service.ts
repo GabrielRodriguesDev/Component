@@ -17,10 +17,16 @@ export class EmployeeService {
 
   constructor() { }
 
-  addEmployee(employee: Employee){
-    employee.bonus = employee.salary >= 1000 ? 0 : employee.bonus
-    this.employees.push(employee);//Fazendo a atribuição do empregado e passando uma condição entre um dos campos
+  addEmployee(employee: Employee) {
+    employee.bonus = employee.salary >= 1000 ? 0 : employee.bonus;
+    this.employees.push(employee); //Fazendo a atribuição do empregado e passando uma condição entre um dos campos
     //devolvendo o valor  a quem chamou
-    
   }
+
+  destroyEmployee(employee: Employee) {
+    const index = this.employees.indexOf(employee);
+    this.employees.splice(index, 1);
+  } 
 }
+    
+  

@@ -1,5 +1,6 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Output } from '@angular/core';
 import {Employee, EmployeeService} from '../employee.service'
+import { EventEmitter } from 'protractor';
 
 declare const $;
 
@@ -16,20 +17,25 @@ export class EmployeeNewModalComponent implements OnInit {
     bonus: 0,
 };
 
+  @Output()//Saida de dados (De Child para Father)
+  onSubmit: EventEmitter <Employee>  = new EventEmitter ()
+  /*Poderiasmos dizer qual valor é o tipo do valor a ser submetido ('Enviado').
+  E estamos criando uma instancia do objeto do tipo EventEmitter,
+  para poder fazer o envio atráves do emit .*/
+
 
 constructor( private element: ElementRef, private employeeService: EmployeeService)/*Passando o pegador de referencia do DOM*/{
 
    }
 
 
-  input: HTMLElement = this.element.nativeElement.input
+ 
 
   ngOnInit() {}
 
 
     
     private getDivModal(): HTMLElement {
-
       const nativeElemet: HTMLElement = this.element.nativeElement //Pegando a instacia do elemento DOM
       return nativeElemet.firstChild .firstChild as HTMLElement /*Pegando o primeiro filho da instacia do DOM, 
       pois estamos passando um componente nessa instancia, e temos que pegar algo dentro dele,
@@ -48,11 +54,11 @@ constructor( private element: ElementRef, private employeeService: EmployeeServi
   }
 
 
-  addEmployee(event) {
+  addEmployee() {
     const copy = Object.assign({}, this.employee);
     this.employeeService.addEmployee(copy);
+    this.onSubmit.emit(copy) ;
     this.hide()
-    console.log('Cai aqui')
   }
 
 }

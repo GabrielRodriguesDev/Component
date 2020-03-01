@@ -9,23 +9,16 @@ import { EmployeeNewModalComponent } from '../employee-new-modal/employee-new-mo
 })
 export class EmployeeListComponent implements OnInit {
 
-  @ViewChild('newModal') //ViewChild é responsavel por pegar a referencia do elemento declarado
+  @ViewChild('employeeNewModal') //ViewChild é responsavel por pegar a referencia do elemento declarado
   employeeNewModal: EmployeeNewModalComponent//Passando a classe do Modal como o "tipo", para ter acesso ao seus métodos
 
 
   constructor(public employeeService: EmployeeService) { }
 
   ngOnInit(): void {
-    
-    
+
   }
 
-  //getSalaryColor(employee) {
-  //  return employee.salary > 20000 ? 'green' : null;
- // }
-
-
-  
   openNewModal(){
     this.employeeNewModal.show()//Iniciando o model a partir do clique do botão, executando o método "show()",
     //Que faz parte da instancia do EmployeNewModalComponent
